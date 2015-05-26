@@ -656,6 +656,14 @@ Public Function GetYrWeek(Optional pDate)
         ' weeknr bepalen & ev. aanvullen tot 2 characters
         weeknr = Format(pDate, "ww", vbMonday, vbFirstFourDays)
         weeknr = IIf(Len(weeknr) = 2, weeknr, "0" + weeknr)
+        ' als einde van het jaar is komt het soms voor dat
+        ' weeknummer 1 wordt teruggegeven van oude jaar ipv nieuwe
+        If Month(pDate) = 12 And weeknr = "01" Then
+            jaar = CStr(jaar + 1)
+        End If
+        If Month(pDate) = 1 And (weeknr = "52" Or weeknr = "53") Then
+            jaar = CStr(jaar - 1)
+        End If
         ' resultaat teruggeven
         GetYrWeek = jaar + weeknr
     Else
