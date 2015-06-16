@@ -769,6 +769,7 @@ Public Function CalcWorkDaysBetween(ByVal dt1 As Date, ByVal dt2 As Date, ByVal 
         If blnInclDay1 And nDay1 < 6 Then nRest = nRest + 1 'add start day
         If blnInclDay2 And nDay2 < 6 Then nRest = nRest + 1 'add end day
         
+        
         ' Possible workdays minus holidays
         If nHolidays < nWorkdays + nRest Then
             CalcWorkDaysBetween = nWorkdays + nRest - nHolidays
