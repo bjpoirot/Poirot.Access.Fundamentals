@@ -814,5 +814,20 @@ Public Function CalcWeeksBetween(ByVal dt1 As Date, ByVal dt2 As Date) As Intege
     
 End Function
 
+' Translate a integer to a Guid 
+Public Function Int2GuidStr(value As Long) As String
+    Int2GuidStr = ""
+    Dim hexValue As String
+    hexValue = CStr(Hex(value))
+    Int2GuidStr = Left("00000000", 8 - Len(hexValue)) + hexValue + "-0000-0000-0000-000000000000"
+End Function
 
+Public Sub OpenSampleDetail(sampleId As Long)
+    FollowHyperlink "https://lims.tlr.nl/Sample/Details/" + Int2GuidStr(sampleId)
+End Sub
+
+
+Public Sub OpenSampleEdit(sampleId As Long)
+    FollowHyperlink "https://lims.tlr.nl/Sample/Edit/" + Int2GuidStr(sampleId)
+End Sub
     
